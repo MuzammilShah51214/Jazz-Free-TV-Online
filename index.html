@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pakistan TV Channels</title>
+  <style>
+        :root {
+            --primary-color: #000000;
+               
+            
+            --secondary-color: #f1f3f4;
+            --hover-color: #e8f0fe;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #292929;
+            color: #333;
+            padding: 30px;
+        }
+        
+        /* Fixed black header */
+        .top-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #121E22;
+            color: white;
+            padding: 1px 20px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .top-banner h2 {
+            font-size: 18px;
+            color: var(--primary-color);
+        }
+        
+        .top-banner p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            margin-top: 20px;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(90deg, #FF6B00, #FF9500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 5s ease infinite;
+            background-size: 200% 200%;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        header p {
+            color: #ddd;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        
+        
+       
+        
+        
+        
+        
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            transition: var(--transition);
+        }
+        
+        .search-box input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+        }
+        
+        .search-box::before {
+            content: "🔍";
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 4px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+        
+        .filter-btn:hover {
+            background-color: var(--hover-color);
+        }
+        
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .channels-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .channel-card {
+    background: white;
+    border-radius: 10%; /* Changed from 10px to 50% to make it circular */
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    aspect-ratio: 1/1; /* Changed from 15/9 to 1/1 for perfect circle */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.channel-logo {
+    width: 90%; /* Reduced from 100% to fit within circle */
+    height: 90%; /* Reduced from 100% to fit within circle */
+    object-fit: contain;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 50%; /* Make logo circular too */
+}
+
+.channel-info {
+    padding: 5px;
+    text-align: center;
+    background: transparent; /* Changed from white to transparent */
+    width: 100%;
+}
+.channel-name {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px; /* Smaller font for circle layout */
+    margin-top: 5px;
+}
+
+        
+        .player-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .player-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            width: 90%;
+            max-width: 900px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .video-container {
+            position: relative;
+           
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            background: black;
+        }
+        
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .channels-container {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .pulse {
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        
+        .copyright {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        
+        
+    </style>
+ </head>
+ <body>
+  <!-- Fixed black top banner2 -->
+  <div class="top-banner">
+   <h4 class="animation" style="font-size: 15px;">JAZZ FreeTV</h4>
+   <p>Syed Muzammil Shah (03406372963)</p>
+  </div>
+  <div class="controls">
+   <div class="search-box">
+    <input type="text" id="search-input" placeholder="Search channels...">
+   </div>
+   <div class="filter-buttons">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="news">News</button>
+    <button class="filter-btn" data-filter="entertainment">Entertainment</button>
+    <button class="filter-btn" data-filter="movies">Movies</button>
+    <button class="filter-btn" data-filter="music">Music</button>
+    <button class="filter-btn" data-filter="kids">Kids</button>
+    <button class="filter-btn" data-filter="sports">Sports</button>
+    <button class="filter-btn" data-filter="islamic">Islamic</button>
+    <button class="filter-btn" data-filter="regional">Regional</button>
+   </div>
+  </div>
+  <div class="channels-container" id="channels-container"></div>
+  <div class="player-modal" id="player-modal">
+   <div class="modal-content">
+    <div class="modal-header">
+     <h2 id="modal-title">Channel Name</h2>
+     <button class="close-btn" id="close-btn">Close ×</button>
+    </div>
+    <div class="video-container">
+     <video id="video-player" controls autoplay poster="https://i.ibb.co/3NgJ4zh/Poster.jpg"></video>
+    </div>
+   </div>
+  </div>
+  <script>
+        // Channel data from the M3U playlist
+        const channels = [
+              { name: "ARY News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/1684242189-logo.webp?id=86", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/ARYnews-abr/playlist.m3u8", category: "news" },
+              
+              
+      { name: "T20 World Cup", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/1769878600540.webp?id=54", url: "https://tencentcdn8.tamashaweb.com/v1/019bf00087161567ee93346674d025/019bffb7d77215fc600b1b67f81952/TMSH_WEB2_DIRTY.m3u8", category: "sports" },        
+              
+              
+  { name: "PSL", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/1770564855174.webp?id=82", url: "https://cdn03lhr-n.tamashaweb.com:8087/jazzauth/PSL_MTA-abr/playlist.m3u8", category: "sports" },  
+
+  { name: "Indus Ai week ", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/1770556269470.webp?id=60", url: "https://cdn07khi-n.tamashaweb.com:8087/jazzauth/indus-AI-abr/playlist.m3u8", category: "entertainment" },  
+
+  { name: "Paigham TV", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/1766040085640.webp?id=10", url: "https://cdn22lhr.tamashaweb.com:8087/jazzauth/PaighamTV-abr/playlist.m3u8", category: "islamic" },  
+  
+  
+  
+  
+     
+        { name: "ARY Digital", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/ary-digital-live-logo.webp?id=62", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/vsat-arydigital-abr/playlist_dvr_timeshift-0-3600.m3u8
+", category: "entertainment" },
+            { name: "Tamasha News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/1744124970890.webp?id=64", url: "https://cdn12isb.tamashaweb.com:8087/jazzauth/Tamasha-News-abr/playlist.m3u8", category: "news" },
+            { name: "PTV Home", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/1750321510303.webp?id=54", url: "https://cdn21lhr.tamashaweb.com:8087/jazzauth/190M/playlist.m3u8", category: "entertainment" },
+            { name: "Geo Entertainment", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/geo-entertainment-live.webp?id=42", url: "https://cdn21lhr.tamashaweb.com:8087/jazzauth/122M/playlist.m3u8", category: "entertainment" },
+     { name: "Green Entertainment", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/1702552123-logo.webp?id=93", url: "https://cdn22lhr.tamashaweb.com:8087/jazzauth/166M/playlist.m3u8", category: "entertainment" },   
+     { name: "Hum Sitaray", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/HUM-Sitaray-Channel-logo.webp?id=15", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/HumSitaray-abr/playlist.m3u8", category: "entertainment" },   
+        
+        
+     { name: "AurLife", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/1745518766547.webp?id=83", url: "https://cdn22lhr.tamashaweb.com:8087/jazzauth/126M/playlist.m3u8", category: "entertainment" },      
+        
+        
+        
+    { name: "Discovery", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/1749016875362.webp?id=71", url: "https://cdn22lhr.tamashaweb.com:8087/jazzauth/DiscoveryHD-abr/playlist.m3u8", category: "entertainment" },     
+        
+        
+        
+        
+        
+            { name: "Dawn News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/dawn-news-live.webp?id=22", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/111M/playlist.m3u8", category: "news" },
+            
+            
+            
+            
+            { name: "PTV News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/1750321735602.webp?id=18", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/PTVNews-abr/playlist.m3u8", category: "news" },
+            { name: "Geo News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/geo-news-live.webp?id=48", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/geoNews-abr/playlist.m3u8", category: "news" },
+            { name: "PTV Sports", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/1750321954030.webp?id=92", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/189M/playlist.m3u8", category: "sports" },
+            
+            { name: "Samaa TV", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/samaa-tv-live.webp?id=27", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/samaaTV-abr/playlist.m3u8", category: "news" },
+            { name: "Eurosport", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/1686912440-logo.webp?id=68", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/Eurosport-abr/playlist.m3u8", category: "sports" },
+            { name: "CGTN HD", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/1749124554903.webp?id=61", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/CgtnHD-abr/playlist.m3u8", category: "entertainment" },
+            { name: "PTV World", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/1750322208140.webp?id=92", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/PTVWorld-abr/playlist.m3u8", category: "news" },
+            { name: "CGTN Documentary HD", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/1749124897580.webp?id=40", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/CgtnDocumentary-abr/playlist.m3u8", category: "entertainment" },
+            
+            { name: "Hum News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/HUM-News-Channel-logo.webp?id=86", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/humnews-abr/playlist.m3u8", category: "news" },
+            { name: "Hum TV", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/1738840613135.webp?id=24", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/humTV-abr/playlist.m3u8", category: "entertainment" },
+            { name: "Inplus Pakistan", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/TMSH-1720441424490.webp?id=35", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/Inplus-abr/playlist.m3u8", category: "movies" },
+            
+            
+            
+      { name: "Animal planet", logo: "https://images.mjunoon.tv:8181/logo/animal-planet-logo.webp", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/158-3M/playlist.m3u8", category: "entertainment" },      
+            
+      { name: "ATV PK", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXR1RfIMYQM_X7x8PBTrpzUTlY6BYRELIaWN0F7v9AUQCPVdTazimW2UI&s=10", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/123M/playlist.m3u8", category: "entertainment" },      
+            
+            
+            
+            
+            
+            { name: "BOL Entertainment", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/bol-entertainment-live.webp?id=35", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/BolEntertainment-abr/playlist.m3u8", category: "entertainment" },
+            { name: "PTV National", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/1750322366525.webp?id=60", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/PTVNational-abr/playlist.m3u8", category: "entertainment" },
+            { name: "Express News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/express-news-live.webp?id=65", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/expressnews-abr/playlist.m3u8", category: "news" },
+            { name: "Tensports", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/ten-sports-hd-logo.webp?id=60", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/157-3H/chunks.m3u8", category: "sports" },
+            { name: "Hum Masala", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/1738840592660.webp?id=16", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/hummasala-abr/playlist.m3u8", category: "entertainment" },
+            { name: "AAJ News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/aaj-news-live.webp?id=97", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/AajNews-abr/playlist.m3u8", category: "news" },
+            { name: "Al Jazeera", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/1706163791-logo.webp?id=44", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/AL-Jazeera-abr/playlist.m3u8", category: "news" },
+      
+            { name: "ARY Zindagi", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/ary-zindagi-live-logo.webp?id=46", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/ARYzindagi-abr/playlist.m3u8", category: "entertainment" },
+            { name: "Express Entertainment", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/express-entertainment-live.webp?id=63", url: "https://cdn22lhr.tamashaweb.com:8087/jazzauth/159-1M/playlist.m3u8", category: "entertainment" },
+            
+            { name: "CNN", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/cnn-news-live.webp?id=37", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/Livecnn-abr/playlist.m3u8", category: "news" },
+            { name: "NEO News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/neo-tv-live.webp?id=91", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/NeoNews-abr/playlist.m3u8", category: "news" },
+            { name: "Set Entertainment", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/1730720761397.webp?id=95", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/SetEntertainment-abr/playlist.m3u8", category: "entertainment" },
+            { name: "Cartoon Network", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/cartoon-network-live.webp?id=56", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/cartoonnetwork-abr/playlist.m3u8", category: "kids" },
+            { name: "BOL News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/bol-news-live.webp?id=99", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/BolNews-abr/playlist.m3u8", category: "news" },
+            { name: "Minimax", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/1702633459-logo.webp?id=36", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/Minimax-abr/playlist.m3u8", category: "kids" },
+            { name: "Aan TV", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/1681977574-logo.webp?id=58", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/AAN-TV-abr/playlist.m3u8", category: "entertainment" },
+            { name: "TV One", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/tv-one-live.webp?id=20", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/TVOne-abr/playlist.m3u8", category: "entertainment" },
+            { name: "ARUJ", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/aruj-live.webp?id=40", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/AroojTV-abr/playlist.m3u8", category: "movies" },
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            { name: "Suno News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/1709545345-logo.webp?id=35", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/Suno_News-abr/playlist.m3u8", category: "news" },
+            { name: "GTV News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/gtv-new-logo.webp?id=65", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/GTVNews-abr/playlist.m3u8", category: "news" },
+            { name: "Sab TV Pakistan", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/1686044497-logo.webp?id=25", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/SabTV-abr/playlist.m3u8", category: "entertainment" },
+            { name: "ABN News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/1686912075-logo.webp?id=55", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/ABNnews-abr/playlist.m3u8", category: "news" },
+            { name: "Madani Channel", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/madani-channel-live.webp?id=68", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/Madni-abr/playlist.m3u8", category: "islamic" },
+            { name: "GNN", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/gnn-live.webp?id=39", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/GNN-abr/playlist.m3u8", category: "news" },
+            { name: "FILMAX", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/filmax-live.webp?id=39", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/Filmax-abr/playlist.m3u8", category: "movies" },
+            { name: "Kashish", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/kashish-live.webp?id=38", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/KashishTV-abr/playlist.m3u8", category: "regional" },
+            { name: "PTV Bolan", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/1750322527745.webp?id=16", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/PTVBolan-abr/playlist.m3u8", category: "regional" },
+            { name: "Sindh TV", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/sindh-tv-live.webp?id=52", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/sindhTV-abr/playlist.m3u8", category: "regional" },
+            { name: "City 21 News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/TMSH-1719490357715.webp?id=25", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/city21-abr/playlist.m3u8", category: "news" },
+            { name: "Baby TV", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/baby-tv-live.webp?id=82", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/BabyTV-abr/playlist.m3u8", category: "kids" },
+            { name: "365 TV", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/1745518926422.webp?id=34", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/365News-abr/playlist.m3u8", category: "news" },
+            { name: "Movie One", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/movie-one-live.webp?id=91", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/MovieOne-abr/playlist.m3u8", category: "movies" },
+            
+            { name: "A PLUS", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/a-plus-live.webp?id=38", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/118M/playlist.m3u8", category: "entertainment" },
+            { name: "LTN Family (Previously Filmazia)", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/ltn-family-live.webp?id=24", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/LTNFamily-abr/playlist.m3u8", category: "entertainment" },
+            { name: "KTN News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/ktn-news-live.webp?id=81", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/ktnNews-abr/playlist.m3u8", category: "news" },
+            { name: "24 NEWS HD", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/channel-24-live.webp?id=18", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/24News-abr/playlist.m3u8", category: "news" },
+            { name: "Such TV", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/such-tv-live.webp?id=62", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/SachTV/playlist.m3u8", category: "news" },
+            { name: "Discover Pakistan", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/discover-pakistan-live-logo.webp?id=13", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/DiscoveryPakistan-abr/playlist.m3u8", category: "entertainment" },
+            { name: "Roze News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/roze-news-live.webp?id=14", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/RozNews-abr/playlist.m3u8", category: "news" },
+            { name: "Play TV", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/play-tv-live.webp?id=25", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/play-abr/playlist.m3u8", category: "entertainment" },
+            { name: "AAJ Entertainment", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/aaj-entertainment-live.webp?id=69", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/AajEntertainment-abr/playlist.m3u8", category: "entertainment" },
+            
+            
+            { name: "Lahore Rang", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/lahore-rang-logo.webp?id=32", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/LahoreRung-abr/playlist.m3u8", category: "entertainment" },
+            
+          
+{ name: "SUN NEWS", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/1758117208685.webp?id=97", url: "https://cdn22lhr.tamashaweb.com:8087/jazzauth/187M/playlist.m3u8", category: "news" },
+
+
+  
+            
+            { name: "News One", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/news-one-live.webp?id=35", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/NewsOne-abr/playlist.m3u8", category: "news" },
+            { name: "Mehran TV", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/mehran-tv-logo.webp?id=86", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/MehranTV-abr/playlist.m3u8", category: "regional" },
+            { name: "Public News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/public-news-live.webp?id=83", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/PublicTV-abr/playlist.m3u8", category: "news" },
+            { name: "A1TV", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/a1-tv-live.webp?id=22", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/A1TV-abr/playlist.m3u8", category: "movies" },
+            { name: "AVT Khyber TV", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/1685537734-logo.webp?id=32", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/AVTkhyberTV-abr/playlist.m3u8", category: "regional" },
+            { name: "Channel 5", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/TMSH-1723464325328.webp?id=41", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/Channel5-abr/playlist.m3u8", category: "news" },
+            { name: "CITY 42", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/city-42-live.webp?id=67", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/city42(vnw)-abr/playlist.m3u8", category: "news" },
+            { name: "Metro 1 News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/metro-1-news-live.webp?id=45", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/Metro1News-abr/playlist.m3u8", category: "news" },
+            { name: "Sindh TV News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/sindh-tv-news-live.webp?id=17", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/SindhNews-abr/playlist.m3u8", category: "regional" },
+            { name: "Time News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/time-news-live.webp?id=59", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/TimeNews-abr/playlist.m3u8", category: "regional" },
+            { name: "Rohi", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/rohi-live.webp?id=16", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/RohiTV-abr/playlist.m3u8", category: "regional" },
+            { name: "Khyber News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/1685537412-logo.webp?id=95", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/KhyberNews-abr/playlist.m3u8", category: "regional" },
+            { name: "K21 News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/k21-news-live.webp?id=96", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/K21-abr/playlist.m3u8", category: "news" },
+            { name: "Saudi Quran Makkah TV HD", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/saudi-quran-makkah-tv-hd-live.webp?id=73", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/Saudimakkah(nw)-abr/playlist.m3u8", category: "islamic" },
+            { name: "Saudi Sunnah Madinah TV HD", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/saudi-sunnah-madinah-tv-hd-live.webp?id=14", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/SaudiSunnah(NW)-abr/playlist.m3u8", category: "islamic" },
+            { name: "Waseb", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/waseb-live.webp?id=32", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/waseeb-abr/playlist.m3u8", category: "entertainment" },
+            { name: "City 41", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/city41-live.webp?id=77", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/city41News-abr/playlist.m3u8", category: "news" },
+            { name: "Mashriq TV", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/mashriq-tv-live.webp?id=23", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/mashriqtv-abr/playlist.m3u8", category: "news" },
+            { name: "DW English", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/DW-english-live.webp?id=70", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/DWNews-abr/playlist.m3u8", category: "news" },
+            { name: "Kohenoor TV", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/kohenoor-tv-live.webp?id=97", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/KohinoorTV-abr/playlist.m3u8", category: "regional" },
+            { name: "8XM", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/8xm-live.webp?id=68", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/8xm-abr/playlist.m3u8", category: "music" },
+            { name: "KTN Entertainment", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/ktn-entertainment-live.webp?id=77", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/ktnEntertainment-abr/playlist.m3u8", category: "entertainment" },
+            { name: "Apna Channel", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/apna-tv-live.webp?id=80", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/Apna-abr/playlist.m3u8", category: "entertainment" },
+            { name: "Abb Takk News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/abb-takk-news-live.webp?id=27", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/abbtak-abr/playlist.m3u8", category: "news" },
+            { name: "Jalwa TV", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/jalwa-tv-live.webp?id=23", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/jalwa-abr/playlist.m3u8", category: "music" },
+            { name: "SEE TV", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/see-tv-live.webp?id=90", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/seeTV-abr/playlist.m3u8", category: "entertainment" },
+            { name: "Champion TV", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/champion-tv-live.webp?id=57", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/championtv-abr/playlist.m3u8", category: "movies" },
+            { name: "Kay2 TV", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/1685535127-logo.webp?id=78", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/Kay2-abr/playlist.m3u8", category: "entertainment" },
+            { name: "Pashto 1", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/logo/HUM-Pashto-Channel-logo.webp?id=42", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/Pashto1-abr/playlist.m3u8", category: "regional" },
+            { name: "Aik News", logo: "https://canvas.tamashaweb.com/jazzlive/uploads/channels/AIKNEWS-LOGO.webp?id=97", url: "https://cdn07isb.tamashaweb.com:8087/jazzauth/PNN-abr/playlist.m3u8", category: "news" }
+        ];
+
+
+
+    
+
+
+
+
+
+
+
+        // DOM elements
+        const channelsContainer = document.getElementById('channels-container');
+        const searchInput = document.getElementById('search-input');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const playerModal = document.getElementById('player-modal');
+        const videoPlayer = document.getElementById('video-player');
+        const modalTitle = document.getElementById('modal-title');
+        const closeBtn = document.getElementById('close-btn');
+
+        // Current filter state
+        let currentFilter = 'all';
+        let currentSearch = '';
+
+        // Initialize the app
+        function init() {
+            renderChannels();
+            setupEventListeners();
+        }
+
+        // Render channels based on current filter and search
+        function renderChannels() {
+            channelsContainer.innerHTML = '';
+            
+            const filteredChannels = channels.filter(channel => {
+                const matchesFilter = currentFilter === 'all' || channel.category === currentFilter;
+                const matchesSearch = channel.name.toLowerCase().includes(currentSearch.toLowerCase());
+                return matchesFilter && matchesSearch;
+            });
+            
+            if (filteredChannels.length === 0) {
+                channelsContainer.innerHTML = '<p style="grid-column: 1 / -1; text-align: center;">No channels found matching your criteria.</p>';
+                return;
+            }
+            
+            filteredChannels.forEach((channel, index) => {
+                const channelCard = document.createElement('div');
+                channelCard.className = 'channel-card fade-in';
+                channelCard.style.animationDelay = `${index * 0.05}s`;
+                channelCard.innerHTML = `
+                    <img src="${channel.logo}" alt="${channel.name}" class="channel-logo" loading="lazy">
+                    <div class="channel-info">
+                        <div class="channel-name">${channel.name}</div>
+                    </div>
+                `;
+                
+                channelCard.addEventListener('click', () => playChannel(channel));
+                channelsContainer.appendChild(channelCard);
+            });
+        }
+
+        // Play selected channel
+        function playChannel(channel) {
+            modalTitle.textContent = channel.name;
+            videoPlayer.src = channel.url;
+            playerModal.classList.add('active');
+            
+            // Try to play the video (may be blocked by browser autoplay policies)
+            videoPlayer.play().catch(e => {
+                console.error('Autoplay was prevented:', e);
+                // Show a play button overlay or message to let user initiate playback
+            });
+        }
+
+        // Close the player modal
+        function closePlayer() {
+            videoPlayer.pause();
+            videoPlayer.src = '';
+            playerModal.classList.remove('active');
+        }
+
+        // Set up event listeners
+        function setupEventListeners() {
+            // Search input
+            searchInput.addEventListener('input', (e) => {
+                currentSearch = e.target.value;
+                renderChannels();
+            });
+            
+            // Filter buttons
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    currentFilter = button.dataset.filter;
+                    renderChannels();
+                });
+            });
+            
+            // Close modal
+            closeBtn.addEventListener('click', closePlayer);
+            playerModal.addEventListener('click', (e) => {
+                if (e.target === playerModal) {
+                    closePlayer();
+                }
+            });
+            
+            // Keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && playerModal.classList.contains('active')) {
+                    closePlayer();
+                }
+            });
+        }
+
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>  
+  <ul id="playlist">
+   <hr>
+   <h4 class="animation">Syed Muzammil Shah Bukhari</h4>
+   <hr>
+   <ul style="list-style-type:none">
+    <style>ul{padding-left:0px; text-align:center;} li{ display:inline-block;padding:0px;} </style>
+    <div class="row">
+     <div class="col-xs-6">
+      <div style="pos%����b���v���H���&#xf;���&#x1;����&#x10;��������&#x3;�3B top: 0px; width: 100%">
+       <style>.unselectable { -moz-user-select:none; -webkit-user-select:none; cursor: default; } html { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;  -webkit-tap-highlight-color: rgb(204,0,204); }
+
+	.animation{font-family:'charm', ; margin: 0; padding: 20px; font-size: 25px;
+
+background: url('https://i.pinimg.com/736x/2a/80/55/2a80556003c4888436e5daff845fc12a.jpg') repeat;
+
+
+  background-clip: text; -webkit-background-clip: text; color: transparent; animation: moveBg 5s linear infinite; -webkit-animation: moveBg 5s linear infinite;} @keyframes moveBg { 0% { background-position:90%; } 100% { background-position:10%;} }  </style>
+      </div>
+     </div>
+    </div>
+   </ul>
+  </ul>
+ </body>
+</html>
